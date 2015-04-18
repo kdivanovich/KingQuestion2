@@ -3,69 +3,58 @@ import java.io.*;
 public class Main {
   public static void main(String[] args) throws IOException {
 	  
-	  
-	  // That was scribbled in ~ 25 minutes + 10 minutes I worked on the website = ~ 35 mins in total
-	  // I don't remember what all the test cases were so this is a solution for the first one.
+	  /*  I am aware this won't be considered, but I hate leaving 
+	   * problems unfinished or looking messy. 
+	   * Plus code reuse is always a good idea.
+	   * And it took me only 10 extra minutes.
+	   */
  
-	  String s = "1,2,3,4,6;5";
+	  String s = "10,5,2,3,4,91,1,11,6;15";
 	  
 	  
 	  // get only the summables
 	  int separ = s.indexOf(";");
-	  String sumStr =  s.substring(separ+1, s.length() );
-	  int sum = Integer.parseInt(sumStr);
+	  String sumStr =  s.substring(separ + 1, s.length() );
+	  
+	  // what the sums should get compared to
+	  int sum = Integer.parseInt(sumStr);	
 	  
 	  if (separ != -1)
 	  {
 	      s = s.substring(0, separ);	
 	  }
 	  
-	  // s = "1,2,3,4,6";
+	  // Now the string S is "10 5 2 3 4 91 1 11 6 " .
 	 
-	  
-	 	  String[] array = s.split(",");
-	 	  int[] ints = new int[array.length];
-	 	  for(int i=0; i<array.length; i++)
-	 	  {
-	 	      try{
-	 	          ints[i] = Integer.parseInt(array[i]);
-	 	      }
-	 	      catch(NumberFormatException nfe){
-	 	          //Not an integer, do some
-	 	      }
-	 	  }
-	 	  
-	 	  String arr = "";
-	 	 for(int i=0; i<array.length; i++){
-	 		 arr += array[i];
-	 	 }
-	 	  
 	 
+	  // Remove the commas and cast the numbers to integers.
+	  String[] numberStrs = s.split(",");
+	  int[] numbers = new int[numberStrs.length];
 	  
-	 	System.out.println("HERE: ");
-	 	  for (int i = 0; i < arr.length()-1; i++) {
-	 		  for (int j = i+1; j < arr.length() - 1; j++ ) {
-	 			  
-	 			 if ( Integer.parseInt((arr.substring(i, i+1))) +  Integer.parseInt((arr.substring(j, j+1))) == (sum)) {
-		 			  System.out.print(arr.substring(i, i+1) + "," + arr.substring(j, j+1) + ";");
-		 		  }
-	 		  }	 		  
-	 		  
-	 	  }
-	 	 System.out.println("\nEND ");
-	 
-	 	  
-	 	  
-	 	  
-	  
-	  // Tests:
-	  //String[] arr = s.split(";", -1);
-	  
-	  for (int i=0; i<array.length; i++) {	  
-		  //System.out.print(array[i]);
+	  for(int i = 0;i < numberStrs.length;i++)
+	  {		  
+	     numbers[i] = Integer.parseInt(numberStrs[i]);
+	     
+	     // To test the string uncomment: 
+	     
+	     //System.out.print(numbers[i] + " ");
 	  }
 	  
-	  //System.out.println("\nSum:" + s.substring(0,1) + "\nInt:" + array[4] + "\nArr:" + arr);
-	 
+	  
+	  //Print the answer pairs:
+	  //System.out.println("\nAnswer: ");
+	  
+ 	  for (int i = 0; i < numbers.length; i++) {
+ 		  for (int j = i+1; j < numbers.length; j++ ) {
+ 			  
+ 			 if (numbers[i] +  numbers[j] == (sum)) {
+	 			  System.out.print(numbers[i] + "," + numbers[j] + ";");
+	 		  }
+ 			 
+ 		  }	 
+ 	  }
+ 	  
+ 	 System.out.println();
+ 
   }
 }
